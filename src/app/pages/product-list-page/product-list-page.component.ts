@@ -16,13 +16,19 @@ export class ProductListPageComponent {
   totalCount = 0;
   pageIndex = signal(1);
   pageSize = signal(5);
+  searchName = signal('');
 
   constructor() {
     effect(() => {
-      this.productService.getList(this.pageIndex(), this.pageSize()).subscribe(({ data, count }) => {
+      this.productService.getList(this.pageIndex(), this.pageSize(), this.searchName()).subscribe(({ data, count }) => {
         this.products = data;
         this.totalCount = count;
       });
     });
+  }
+
+  onSearch(name: string): void {
+    this.searchName.set(name);
+    this.pageIndex.set(1);
   }
 }
