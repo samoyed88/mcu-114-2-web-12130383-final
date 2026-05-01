@@ -1,4 +1,9 @@
 <nav>
   <a [routerLink]="'/products'" routerLinkActive="active">產品清單</a>
-  <a [routerLink]="'/cart'" routerLinkActive="active">購物車</a>
+  <a [routerLink]="'/cart'" routerLinkActive="active">
+    購物車
+    @if (cartService.totalCount() > 0) {
+      <span class="badge">{{ cartService.totalCount() }}</span>
+    }
+  </a>
 </nav>

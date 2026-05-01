@@ -22,4 +22,18 @@ a {
     background-color: #005cbb;
     color: white;
   }
+
+  .badge {
+    display: inline-block;
+    background-color: #ba1a1a;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
 }

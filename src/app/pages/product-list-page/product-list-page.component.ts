@@ -1,7 +1,9 @@
 import { Component, effect, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product';
 
 @Component({
@@ -12,6 +14,8 @@ import { Product } from '../../models/product';
 })
 export class ProductListPageComponent {
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
+  private router = inject(Router);
 
   products: Product[] = [];
   totalCount = 0;
@@ -31,5 +35,16 @@ export class ProductListPageComponent {
   onSearch(name: string): void {
     this.searchName.set(name);
     this.pageIndex.set(1);
+  }
+
+  onView(productId: number): void {
+    this.router.navigate(['products', productId]);
+  }
+
+  onAddToCart(productId: number): void {
+    const product = this.products.find(({ id }) => id === productId);
+    if (product) {
+      this.cartService.add(product);
+    }
   }
 }
