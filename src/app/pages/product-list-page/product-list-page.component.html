@@ -3,6 +3,7 @@
   <input type="text" placeholder="輸入產品名稱查詢" #searchInput />
   <button type="button" (click)="onSearch(searchInput.value)">查詢</button>
 </div>
+<div class="info">共 {{ totalCount }} 筆產品（已隱藏未上架產品）</div>
 <div class="product-list">
   @for (product of products; track product.id) {
     <app-product-card
