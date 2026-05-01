@@ -1,11 +1,12 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-list-page',
-  imports: [ProductCardComponent],
+  imports: [ProductCardComponent, PaginationComponent],
   templateUrl: './product-list-page.component.html',
   styleUrl: './product-list-page.component.scss',
 })
