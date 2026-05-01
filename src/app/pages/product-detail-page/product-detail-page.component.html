@@ -21,6 +21,10 @@
           <span class="sale-price">{{ product.price | currency: 'TWD': 'symbol': '1.0-0' }}</span>
         }
       </div>
+      <div class="actions">
+        <button type="button" class="cart-btn" (click)="onAddToCart()">加入購物車</button>
+        <button type="button" class="back-btn" (click)="onBack()">返回清單</button>
+      </div>
     </div>
   </div>
 } @else {
