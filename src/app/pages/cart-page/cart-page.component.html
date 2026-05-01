@@ -18,6 +18,7 @@
           (change)="onQuantityChange(item.product.id, $event)"
         />
         <span class="item-subtotal">{{ getSubtotal(item.product.price, item.product.discount, item.quantity) | currency: 'TWD': 'symbol': '1.2-2' }}</span>
+        <button type="button" class="remove-btn" (click)="onRemove(item.product.id)">刪除</button>
       </div>
     } @empty {
       <div class="empty">購物車是空的</div>

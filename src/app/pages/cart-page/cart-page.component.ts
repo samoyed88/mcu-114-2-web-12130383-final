@@ -19,4 +19,8 @@ export class CartPageComponent {
     const value = +(event.target as HTMLInputElement).value;
     this.cartService.updateQuantity(productId, value);
   }
+
+  onRemove(productId: number): void {
+    this.cartService.remove(productId);
+  }
 }

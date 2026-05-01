@@ -69,6 +69,21 @@
           text-align: right;
           font-weight: bold;
         }
+
+        .remove-btn {
+          padding: 4px 12px;
+          border: solid 1px #ba1a1a;
+          border-radius: 4px;
+          background-color: white;
+          color: #ba1a1a;
+          cursor: pointer;
+          font-size: 12px;
+
+          &:hover {
+            background-color: #ba1a1a;
+            color: white;
+          }
+        }
       }
 
       .empty {
