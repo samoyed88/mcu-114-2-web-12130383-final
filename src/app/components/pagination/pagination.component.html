@@ -1,0 +1,5 @@
+@for (i of pages(); track i) {
+  <button type="button" [class.active]="i === pageIndex()" (click)="pageIndex.set(i)">
+    {{ i }}
+  </button>
+}

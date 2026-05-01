@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  padding: 10px 0;
+
+  button {
+    padding: 8px 16px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+
+    &.active {
+      background-color: #005cbb;
+      color: white;
+      border-color: #005cbb;
+    }
+
+    &:hover:not(.active) {
+      background-color: #eef3f8;
+    }
+  }
+}
