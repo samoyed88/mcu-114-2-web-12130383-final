@@ -1,0 +1,26 @@
+<img [src]="imgUrl()" [alt]="name()" />
+<div class="content">
+  <strong [class.discount]="discount() < 1">{{ name() }}</strong>
+  <span class="date">{{ createDate() | date: 'yyyy-MM-dd' }}</span>
+</div>
+<div class="authors">
+  @for (author of authors(); track $index) {
+    <span>{{ author }}</span>
+    @if (!$last) {
+      <span>、</span>
+    }
+  }
+</div>
+<div class="company">
+  <span>{{ company() }}</span>
+  @if (discount() < 1) {
+    <span class="original-price">{{ price() | currency: 'TWD': 'symbol': '1.0-0' }}</span>
+    <span class="sale-price">{{ price() * discount() | currency: 'TWD': 'symbol': '1.0-0' }}</span>
+  } @else {
+    <span>{{ price() | currency: 'TWD': 'symbol': '1.0-0' }}</span>
+  }
+</div>
+<div class="actions">
+  <button type="button" class="view" (click)="view.emit(id())">檢視</button>
+  <button type="button" class="cart" (click)="addToCart.emit(id())">加入購物車</button>
+</div>
