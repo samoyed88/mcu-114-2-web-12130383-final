@@ -1,1 +1,28 @@
 <h2>產品明細</h2>
+@if (product) {
+  <div class="detail-card">
+    <img [src]="product.imgUrl" [alt]="product.name" />
+    <div class="info">
+      <h3 [class.discount]="product.discount < 1">{{ product.name }}</h3>
+      <p><strong>出版社：</strong>{{ product.company }}</p>
+      <p>
+        <strong>作者：</strong>
+        @for (author of product.authors; track $index) {
+          {{ author }}@if (!$last) {、}
+        }
+      </p>
+      <p><strong>建檔日期：</strong>{{ product.createDate | date: 'yyyy-MM-dd' }}</p>
+      <div class="price-area">
+        @if (product.discount < 1) {
+          <span class="original-price">{{ product.price | currency: 'TWD': 'symbol': '1.0-0' }}</span>
+          <span class="sale-price">{{ product.price * product.discount | currency: 'TWD': 'symbol': '1.0-0' }}</span>
+          <span class="discount-tag">{{ product.discount * 10 }}折</span>
+        } @else {
+          <span class="sale-price">{{ product.price | currency: 'TWD': 'symbol': '1.0-0' }}</span>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <p>查無此產品</p>
+}
