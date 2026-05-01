@@ -20,7 +20,7 @@ export class ProductDetailPageComponent implements OnInit {
   product?: Product;
 
   ngOnInit(): void {
-    this.productService.getById(this.id()).subscribe((product) => {
+    this.productService.getById(+this.id()).subscribe((product) => {
       this.product = product;
     });
   }
