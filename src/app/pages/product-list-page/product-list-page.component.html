@@ -1,1 +1,17 @@
 <h2>產品清單</h2>
+<div class="product-list">
+  @for (product of products; track product.id) {
+    <app-product-card
+      [id]="product.id"
+      [name]="product.name"
+      [authors]="product.authors"
+      [company]="product.company"
+      [price]="product.price"
+      [discount]="product.discount"
+      [imgUrl]="product.imgUrl"
+      [createDate]="product.createDate"
+    ></app-product-card>
+  } @empty {
+    <div class="data-empty">無產品資料</div>
+  }
+</div>
