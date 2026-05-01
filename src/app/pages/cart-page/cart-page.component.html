@@ -1,1 +1,32 @@
 <h2>購物車頁面</h2>
+<div class="cart-layout">
+  <div class="form-section">
+    <h3>基本資料</h3>
+    <p>（尚未實作）</p>
+  </div>
+
+  <div class="items-section">
+    <h3>購買項目</h3>
+    @for (item of cartService.items(); track item.product.id) {
+      <div class="cart-item">
+        <span class="item-id">{{ item.product.id }}</span>
+        <span class="item-name">{{ item.product.name }}</span>
+        <input
+          type="number"
+          [value]="item.quantity"
+          min="1"
+          (change)="onQuantityChange(item.product.id, $event)"
+        />
+        <span class="item-subtotal">{{ getSubtotal(item.product.price, item.product.discount, item.quantity) | currency: 'TWD': 'symbol': '1.2-2' }}</span>
+      </div>
+    } @empty {
+      <div class="empty">購物車是空的</div>
+    }
+  </div>
+</div>
+
+<div class="submit-area">
+  <button type="button" disabled>
+    送出訂單 ({{ cartService.totalAmount() | currency: 'TWD': 'symbol': '1.2-2' }})
+  </button>
+</div>

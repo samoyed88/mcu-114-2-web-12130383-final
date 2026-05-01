@@ -1,4 +1,100 @@
 :host {
   display: block;
   padding: 20px;
+
+  h2 {
+    text-align: center;
+  }
+
+  .cart-layout {
+    display: flex;
+    gap: 20px;
+
+    .form-section,
+    .items-section {
+      background-color: white;
+      border: solid 1px #ccc;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .form-section {
+      flex: 1;
+
+      h3 {
+        margin-top: 0;
+        text-align: center;
+        border-bottom: solid 1px #ccc;
+        padding-bottom: 10px;
+      }
+    }
+
+    .items-section {
+      flex: 2;
+
+      h3 {
+        margin-top: 0;
+        text-align: center;
+        border-bottom: solid 1px #ccc;
+        padding-bottom: 10px;
+      }
+
+      .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px 0;
+        border-bottom: solid 1px #eee;
+
+        .item-id {
+          width: 30px;
+          text-align: center;
+          color: #666;
+        }
+
+        .item-name {
+          flex: 1;
+        }
+
+        input {
+          width: 60px;
+          padding: 4px 8px;
+          border: solid 1px #ccc;
+          border-radius: 4px;
+          text-align: center;
+        }
+
+        .item-subtotal {
+          width: 100px;
+          text-align: right;
+          font-weight: bold;
+        }
+      }
+
+      .empty {
+        text-align: center;
+        color: #999;
+        padding: 20px;
+      }
+    }
+  }
+
+  .submit-area {
+    text-align: center;
+    margin-top: 20px;
+
+    button {
+      padding: 12px 30px;
+      border: solid 1px #ccc;
+      border-radius: 5px;
+      background-color: white;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  }
 }
