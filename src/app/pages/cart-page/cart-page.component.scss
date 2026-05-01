@@ -27,6 +27,32 @@
         border-bottom: solid 1px #ccc;
         padding-bottom: 10px;
       }
+
+      .form-field {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+
+        label {
+          width: 50px;
+          text-align: right;
+          font-weight: bold;
+        }
+
+        input {
+          flex: 1;
+          padding: 6px 10px;
+          border: solid 1px #ccc;
+          border-radius: 4px;
+        }
+
+        .error {
+          color: #ba1a1a;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+      }
     }
 
     .items-section {

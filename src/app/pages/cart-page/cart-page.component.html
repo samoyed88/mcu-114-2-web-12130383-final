@@ -2,7 +2,29 @@
 <div class="cart-layout">
   <div class="form-section">
     <h3>基本資料</h3>
-    <p>（尚未實作）</p>
+    <form [formGroup]="form">
+      <div class="form-field">
+        <label for="name">姓名</label>
+        <input id="name" type="text" formControlName="name" />
+        @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
+          <span class="error">請輸入姓名</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="address">地址</label>
+        <input id="address" type="text" formControlName="address" />
+        @if (form.get('address')?.hasError('required') && form.get('address')?.touched) {
+          <span class="error">請輸入地址</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="phone">電話</label>
+        <input id="phone" type="text" formControlName="phone" />
+        @if (form.get('phone')?.hasError('required') && form.get('phone')?.touched) {
+          <span class="error">請輸入電話</span>
+        }
+      </div>
+    </form>
   </div>
 
   <div class="items-section">
@@ -27,7 +49,7 @@
 </div>
 
 <div class="submit-area">
-  <button type="button" disabled>
+  <button type="button" [disabled]="!canSubmit" (click)="onSubmit()">
     送出訂單 ({{ cartService.totalAmount() | currency: 'TWD': 'symbol': '1.2-2' }})
   </button>
 </div>

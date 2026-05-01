@@ -1,15 +1,28 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, ReactiveFormsModule],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
 export class CartPageComponent {
   protected cartService = inject(CartService);
+  private router = inject(Router);
+
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
+  });
+
+  get canSubmit(): boolean {
+    return this.form.valid && this.cartService.totalCount() > 0;
+  }
 
   getSubtotal(price: number, discount: number, quantity: number): number {
     return price * discount * quantity;
@@ -22,5 +35,21 @@ export class CartPageComponent {
 
   onRemove(productId: number): void {
     this.cartService.remove(productId);
+  }
+
+  onSubmit(): void {
+    if (!this.canSubmit) return;
+
+    const order = {
+      customer: this.form.value,
+      items: this.cartService.items(),
+      totalAmount: this.cartService.totalAmount(),
+    };
+
+    console.log('訂單已送出', order);
+    alert('訂單已送出！');
+    this.cartService.clear();
+    this.form.reset();
+    this.router.navigate(['products']);
   }
 }
