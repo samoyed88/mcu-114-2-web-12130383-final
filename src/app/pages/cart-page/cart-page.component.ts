@@ -1,9 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
+import { CITY_DISTRICT_MAP } from '../../data/city-district';
 
 @Component({
   selector: 'app-cart-page',
@@ -16,11 +17,22 @@ export class CartPageComponent {
   private orderService = inject(OrderService);
   private router = inject(Router);
 
+  cities = Object.keys(CITY_DISTRICT_MAP);
+  selectedCity = signal('');
+  districts = computed(() => CITY_DISTRICT_MAP[this.selectedCity()] ?? []);
+
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    address: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    city: new FormControl('', [Validators.required]),
+    district: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required, Validators.minLength(3)]),
     phone: new FormControl('', [Validators.required, Validators.pattern(/^09\d{8}$/)]),
   });
+
+  onCityChange(city: string): void {
+    this.selectedCity.set(city);
+    this.form.get('district')?.reset('');
+  }
 
   get canSubmit(): boolean {
     return this.form.valid && this.cartService.totalCount() > 0;

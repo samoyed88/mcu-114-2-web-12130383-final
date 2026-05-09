@@ -14,13 +14,37 @@
         }
       </div>
       <div class="form-field">
+        <label for="city">縣市</label>
+        <select id="city" formControlName="city" (change)="onCityChange(form.get('city')?.value ?? '')">
+          <option value="">請選擇縣市</option>
+          @for (city of cities; track city) {
+            <option [value]="city">{{ city }}</option>
+          }
+        </select>
+        @if (form.get('city')?.hasError('required') && form.get('city')?.touched) {
+          <span class="error">請選擇縣市</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="district">區域</label>
+        <select id="district" formControlName="district">
+          <option value="">請選擇區域</option>
+          @for (district of districts(); track district) {
+            <option [value]="district">{{ district }}</option>
+          }
+        </select>
+        @if (form.get('district')?.hasError('required') && form.get('district')?.touched) {
+          <span class="error">請選擇區域</span>
+        }
+      </div>
+      <div class="form-field">
         <label for="address">地址</label>
-        <input id="address" type="text" formControlName="address" />
+        <input id="address" type="text" formControlName="address" placeholder="詳細地址（路街巷弄號樓）" />
         @if (form.get('address')?.hasError('required') && form.get('address')?.touched) {
-          <span class="error">請輸入地址</span>
+          <span class="error">請輸入詳細地址</span>
         }
         @if (form.get('address')?.hasError('minlength') && form.get('address')?.touched) {
-          <span class="error">地址至少 5 個字</span>
+          <span class="error">地址至少 3 個字</span>
         }
       </div>
       <div class="form-field">
