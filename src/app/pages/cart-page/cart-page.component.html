@@ -39,18 +39,11 @@
   <div class="items-section">
     <h3>購買項目</h3>
     @for (item of cartService.items(); track item.product.id) {
-      <div class="cart-item">
-        <span class="item-id">{{ item.product.id }}</span>
-        <span class="item-name">{{ item.product.name }}</span>
-        <input
-          type="number"
-          [value]="item.quantity"
-          min="1"
-          (change)="onQuantityChange(item.product.id, $event)"
-        />
-        <span class="item-subtotal">{{ getSubtotal(item.product.price, item.product.discount, item.quantity) | currency: 'TWD': 'symbol': '1.2-2' }}</span>
-        <button type="button" class="remove-btn" (click)="onRemove(item.product.id)">刪除</button>
-      </div>
+      <app-cart-item
+        [item]="item"
+        (quantityChange)="onQuantityChange($event)"
+        (remove)="onRemove($event)"
+      />
     } @empty {
       <div class="empty">購物車是空的</div>
     }

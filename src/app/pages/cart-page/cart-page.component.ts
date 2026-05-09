@@ -4,10 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
+import { CartItemComponent } from '../../components/cart-item/cart-item.component';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [CurrencyPipe, ReactiveFormsModule],
+  imports: [CurrencyPipe, ReactiveFormsModule, CartItemComponent],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
@@ -26,13 +27,8 @@ export class CartPageComponent {
     return this.form.valid && this.cartService.totalCount() > 0;
   }
 
-  getSubtotal(price: number, discount: number, quantity: number): number {
-    return price * discount * quantity;
-  }
-
-  onQuantityChange(productId: number, event: Event): void {
-    const value = +(event.target as HTMLInputElement).value;
-    this.cartService.updateQuantity(productId, value);
+  onQuantityChange(event: { productId: number; quantity: number }): void {
+    this.cartService.updateQuantity(event.productId, event.quantity);
   }
 
   onRemove(productId: number): void {
