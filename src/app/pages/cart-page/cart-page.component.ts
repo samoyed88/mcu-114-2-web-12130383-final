@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-cart-page',
@@ -12,6 +13,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartPageComponent {
   protected cartService = inject(CartService);
+  private orderService = inject(OrderService);
   private router = inject(Router);
 
   form = new FormGroup({
@@ -46,10 +48,11 @@ export class CartPageComponent {
       totalAmount: this.cartService.totalAmount(),
     };
 
-    console.log('訂單已送出', order);
-    alert('訂單已送出！');
-    this.cartService.clear();
-    this.form.reset();
-    this.router.navigate(['products']);
+    this.orderService.submitOrder(order).subscribe(() => {
+      alert('訂單已送出！');
+      this.cartService.clear();
+      this.form.reset();
+      this.router.navigate(['products']);
+    });
   }
 }
