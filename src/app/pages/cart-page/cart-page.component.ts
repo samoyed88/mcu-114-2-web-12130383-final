@@ -1,14 +1,14 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
 import { CartItemComponent } from '../../components/cart-item/cart-item.component';
+import { OrderFormComponent } from '../../components/order-form/order-form.component';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [CurrencyPipe, ReactiveFormsModule, CartItemComponent],
+  imports: [CurrencyPipe, CartItemComponent, OrderFormComponent],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
 })
@@ -17,14 +17,10 @@ export class CartPageComponent {
   private orderService = inject(OrderService);
   private router = inject(Router);
 
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    address: new FormControl('', [Validators.required, Validators.pattern(/^.+[市縣].+[區鄉鎮市].+/)]),
-    phone: new FormControl('', [Validators.required, Validators.pattern(/^09\d{8}$/)]),
-  });
+  orderForm = viewChild.required(OrderFormComponent);
 
   get canSubmit(): boolean {
-    return this.form.valid && this.cartService.totalCount() > 0;
+    return this.orderForm().isValid && this.cartService.totalCount() > 0;
   }
 
   onQuantityChange(event: { productId: number; quantity: number }): void {
@@ -39,7 +35,7 @@ export class CartPageComponent {
     if (!this.canSubmit) return;
 
     const order = {
-      customer: this.form.value,
+      customer: this.orderForm().value,
       items: this.cartService.items(),
       totalAmount: this.cartService.totalAmount(),
     };
@@ -47,7 +43,7 @@ export class CartPageComponent {
     this.orderService.submitOrder(order).subscribe(() => {
       alert('訂單已送出！');
       this.cartService.clear();
-      this.form.reset();
+      this.orderForm().reset();
       this.router.navigate(['products']);
     });
   }
