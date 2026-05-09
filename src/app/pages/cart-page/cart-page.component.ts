@@ -17,9 +17,9 @@ export class CartPageComponent {
   private router = inject(Router);
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    address: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    phone: new FormControl('', [Validators.required, Validators.pattern(/^09\d{8}$/)]),
   });
 
   get canSubmit(): boolean {

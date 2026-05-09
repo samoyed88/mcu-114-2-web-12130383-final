@@ -9,6 +9,9 @@
         @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
           <span class="error">請輸入姓名</span>
         }
+        @if (form.get('name')?.hasError('minlength') && form.get('name')?.touched) {
+          <span class="error">姓名至少 2 個字</span>
+        }
       </div>
       <div class="form-field">
         <label for="address">地址</label>
@@ -16,12 +19,18 @@
         @if (form.get('address')?.hasError('required') && form.get('address')?.touched) {
           <span class="error">請輸入地址</span>
         }
+        @if (form.get('address')?.hasError('minlength') && form.get('address')?.touched) {
+          <span class="error">地址至少 5 個字</span>
+        }
       </div>
       <div class="form-field">
         <label for="phone">電話</label>
         <input id="phone" type="text" formControlName="phone" />
         @if (form.get('phone')?.hasError('required') && form.get('phone')?.touched) {
           <span class="error">請輸入電話</span>
+        }
+        @if (form.get('phone')?.hasError('pattern') && form.get('phone')?.touched) {
+          <span class="error">請輸入正確的手機號碼格式（09xxxxxxxx）</span>
         }
       </div>
     </form>
