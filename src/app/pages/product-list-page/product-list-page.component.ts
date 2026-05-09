@@ -2,13 +2,14 @@ import { Component, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-list-page',
-  imports: [ProductCardComponent, PaginationComponent],
+  imports: [ProductCardComponent, PaginationComponent, SearchBarComponent],
   templateUrl: './product-list-page.component.html',
   styleUrl: './product-list-page.component.scss',
 })
