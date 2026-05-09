@@ -17,8 +17,8 @@ export class ProductListPageComponent {
   private cartService = inject(CartService);
   private router = inject(Router);
 
-  products: Product[] = [];
-  totalCount = 0;
+  products = signal<Product[]>([]);
+  totalCount = signal(0);
   pageIndex = signal(1);
   pageSize = signal(5);
   searchName = signal('');
@@ -28,8 +28,8 @@ export class ProductListPageComponent {
       const sub = this.productService
         .getList(this.pageIndex(), this.pageSize(), this.searchName())
         .subscribe(({ data, count }) => {
-          this.products = data;
-          this.totalCount = count;
+          this.products.set(data);
+          this.totalCount.set(count);
         });
       onCleanup(() => sub.unsubscribe());
     });
@@ -45,7 +45,7 @@ export class ProductListPageComponent {
   }
 
   onAddToCart(productId: number): void {
-    const product = this.products.find(({ id }) => id === productId);
+    const product = this.products().find(({ id }) => id === productId);
     if (product) {
       this.cartService.add(product);
     }
