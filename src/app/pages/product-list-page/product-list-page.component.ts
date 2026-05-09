@@ -24,11 +24,14 @@ export class ProductListPageComponent {
   searchName = signal('');
 
   constructor() {
-    effect(() => {
-      this.productService.getList(this.pageIndex(), this.pageSize(), this.searchName()).subscribe(({ data, count }) => {
-        this.products = data;
-        this.totalCount = count;
-      });
+    effect((onCleanup) => {
+      const sub = this.productService
+        .getList(this.pageIndex(), this.pageSize(), this.searchName())
+        .subscribe(({ data, count }) => {
+          this.products = data;
+          this.totalCount = count;
+        });
+      onCleanup(() => sub.unsubscribe());
     });
   }
 
