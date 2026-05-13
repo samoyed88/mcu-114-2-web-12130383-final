@@ -16,7 +16,7 @@ export class ProductCardComponent {
   price = input<number>(0);
   discount = input<number>(1);
   imgUrl = input<string>('');
-  createDate = input<Date>(new Date());
+  createDate = input<string>('');
 
   view = output<number>();
   addToCart = output<number>();

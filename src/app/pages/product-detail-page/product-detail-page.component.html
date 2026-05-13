@@ -1,5 +1,5 @@
 <h2>產品明細</h2>
-@if (product) {
+@if (product(); as product) {
   <div class="detail-card">
     <img [src]="product.imgUrl" [alt]="product.name" />
     <div class="info">

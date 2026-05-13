@@ -1,47 +1,17 @@
 <h2>購物車頁面</h2>
 <div class="cart-layout">
   <div class="form-section">
-    <h3>基本資料</h3>
-    <form [formGroup]="form">
-      <div class="form-field">
-        <label for="name">姓名</label>
-        <input id="name" type="text" formControlName="name" />
-        @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
-          <span class="error">請輸入姓名</span>
-        }
-      </div>
-      <div class="form-field">
-        <label for="address">地址</label>
-        <input id="address" type="text" formControlName="address" />
-        @if (form.get('address')?.hasError('required') && form.get('address')?.touched) {
-          <span class="error">請輸入地址</span>
-        }
-      </div>
-      <div class="form-field">
-        <label for="phone">電話</label>
-        <input id="phone" type="text" formControlName="phone" />
-        @if (form.get('phone')?.hasError('required') && form.get('phone')?.touched) {
-          <span class="error">請輸入電話</span>
-        }
-      </div>
-    </form>
+    <app-order-form />
   </div>
 
   <div class="items-section">
     <h3>購買項目</h3>
     @for (item of cartService.items(); track item.product.id) {
-      <div class="cart-item">
-        <span class="item-id">{{ item.product.id }}</span>
-        <span class="item-name">{{ item.product.name }}</span>
-        <input
-          type="number"
-          [value]="item.quantity"
-          min="1"
-          (change)="onQuantityChange(item.product.id, $event)"
-        />
-        <span class="item-subtotal">{{ getSubtotal(item.product.price, item.product.discount, item.quantity) | currency: 'TWD': 'symbol': '1.2-2' }}</span>
-        <button type="button" class="remove-btn" (click)="onRemove(item.product.id)">刪除</button>
-      </div>
+      <app-cart-item
+        [item]="item"
+        (quantityChange)="onQuantityChange($event)"
+        (remove)="onRemove($event)"
+      />
     } @empty {
       <div class="empty">購物車是空的</div>
     }

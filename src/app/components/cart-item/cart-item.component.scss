@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: solid 1px #eee;
+
+  .item-id {
+    width: 30px;
+    text-align: center;
+    color: #666;
+  }
+
+  .item-name {
+    flex: 1;
+  }
+
+  input {
+    width: 60px;
+    padding: 4px 8px;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .item-subtotal {
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .remove-btn {
+    padding: 4px 12px;
+    border: solid 1px #ba1a1a;
+    border-radius: 4px;
+    background-color: white;
+    color: #ba1a1a;
+    cursor: pointer;
+    font-size: 12px;
+
+    &:hover {
+      background-color: #ba1a1a;
+      color: white;
+    }
+  }
+}

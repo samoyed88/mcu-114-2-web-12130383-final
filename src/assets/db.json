@@ -3,7 +3,10 @@
     {
       "id": 1,
       "name": "A 產品",
-      "authors": ["作者甲", "作者乙"],
+      "authors": [
+        "作者甲",
+        "作者乙"
+      ],
       "company": "博碩文化",
       "isShow": true,
       "price": 1580,
@@ -14,7 +17,9 @@
     {
       "id": 2,
       "name": "B 產品",
-      "authors": ["作者丙"],
+      "authors": [
+        "作者丙"
+      ],
       "company": "天瓏資訊",
       "isShow": true,
       "price": 2400,
@@ -25,7 +30,10 @@
     {
       "id": 3,
       "name": "C 產品",
-      "authors": ["作者甲", "作者丁"],
+      "authors": [
+        "作者甲",
+        "作者丁"
+      ],
       "company": "歐萊禮",
       "isShow": true,
       "price": 1580,
@@ -36,7 +44,10 @@
     {
       "id": 4,
       "name": "D 產品",
-      "authors": ["作者乙", "作者丙"],
+      "authors": [
+        "作者乙",
+        "作者丙"
+      ],
       "company": "博碩文化",
       "isShow": false,
       "price": 3200,
@@ -47,7 +58,9 @@
     {
       "id": 5,
       "name": "E 產品",
-      "authors": ["作者戊"],
+      "authors": [
+        "作者戊"
+      ],
       "company": "天瓏資訊",
       "isShow": true,
       "price": 980,
@@ -58,7 +71,11 @@
     {
       "id": 6,
       "name": "F 產品",
-      "authors": ["作者甲", "作者乙", "作者丙"],
+      "authors": [
+        "作者甲",
+        "作者乙",
+        "作者丙"
+      ],
       "company": "歐萊禮",
       "isShow": true,
       "price": 4500,
@@ -69,7 +86,9 @@
     {
       "id": 7,
       "name": "G 產品",
-      "authors": ["作者丁"],
+      "authors": [
+        "作者丁"
+      ],
       "company": "博碩文化",
       "isShow": true,
       "price": 1200,
@@ -80,7 +99,10 @@
     {
       "id": 8,
       "name": "H 產品",
-      "authors": ["作者戊", "作者己"],
+      "authors": [
+        "作者戊",
+        "作者己"
+      ],
       "company": "天瓏資訊",
       "isShow": false,
       "price": 2800,
@@ -91,7 +113,9 @@
     {
       "id": 9,
       "name": "I 產品",
-      "authors": ["作者甲"],
+      "authors": [
+        "作者甲"
+      ],
       "company": "歐萊禮",
       "isShow": true,
       "price": 1750,
@@ -102,13 +126,63 @@
     {
       "id": 10,
       "name": "J 產品",
-      "authors": ["作者乙", "作者丁"],
+      "authors": [
+        "作者乙",
+        "作者丁"
+      ],
       "company": "博碩文化",
       "isShow": true,
       "price": 3600,
       "discount": 0.7,
       "imgUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=J",
       "createDate": "2025-01-30T00:00:00.000+08:00"
+    }
+  ],
+  "orders": [
+    {
+      "customer": {
+        "name": "test0509_01",
+        "address": "jfisanfkei",
+        "phone": "0912345678"
+      },
+      "items": [
+        {
+          "product": {
+            "id": 6,
+            "name": "F 產品",
+            "authors": [
+              "作者甲",
+              "作者乙",
+              "作者丙"
+            ],
+            "company": "歐萊禮",
+            "isShow": true,
+            "price": 4500,
+            "discount": 0.9,
+            "imgUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=F",
+            "createDate": "2024-12-25T00:00:00.000+08:00"
+          },
+          "quantity": 2
+        },
+        {
+          "product": {
+            "id": 5,
+            "name": "E 產品",
+            "authors": [
+              "作者戊"
+            ],
+            "company": "天瓏資訊",
+            "isShow": true,
+            "price": 980,
+            "discount": 1,
+            "imgUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=E",
+            "createDate": "2025-05-01T00:00:00.000+08:00"
+          },
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 9080,
+      "id": 1
     }
   ]
 }

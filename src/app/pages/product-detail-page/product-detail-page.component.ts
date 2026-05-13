@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
@@ -17,17 +17,18 @@ export class ProductDetailPageComponent implements OnInit {
   private router = inject(Router);
 
   id = input.required<number>();
-  product?: Product;
+  product = signal<Product | undefined>(undefined);
 
   ngOnInit(): void {
     this.productService.getById(+this.id()).subscribe((product) => {
-      this.product = product;
+      this.product.set(product);
     });
   }
 
   onAddToCart(): void {
-    if (this.product) {
-      this.cartService.add(this.product);
+    const product = this.product();
+    if (product) {
+      this.cartService.add(product);
       this.router.navigate(['cart']);
     }
   }

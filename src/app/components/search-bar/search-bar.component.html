@@ -1,0 +1,4 @@
+<div class="search-bar">
+  <input type="text" [placeholder]="placeholder()" #searchInput />
+  <button type="button" (click)="search.emit(searchInput.value)">查詢</button>
+</div>

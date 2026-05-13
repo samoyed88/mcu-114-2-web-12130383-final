@@ -39,6 +39,8 @@ testem.log
 /typings
 __screenshots__/
 plan.md
+current-tech-analysis.md
+optimization-plan.md
 
 # System files
 .DS_Store

@@ -22,13 +22,13 @@ export class CartService {
 
     if (existingIndex >= 0) {
       const updated = [...current];
-      updated[existingIndex] = new CartItem({
+      updated[existingIndex] = {
         ...updated[existingIndex],
         quantity: updated[existingIndex].quantity + quantity,
-      });
+      };
       this._items.set(updated);
     } else {
-      this._items.set([...current, new CartItem({ product, quantity })]);
+      this._items.set([...current, { product, quantity }]);
     }
   }
 
@@ -43,7 +43,7 @@ export class CartService {
     }
 
     const current = this._items();
-    const updated = current.map((item) => (item.product.id === productId ? new CartItem({ ...item, quantity }) : item));
+    const updated = current.map((item) => (item.product.id === productId ? { ...item, quantity } : item));
     this._items.set(updated);
   }
 
